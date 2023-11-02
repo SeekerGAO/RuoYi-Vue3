@@ -1,6 +1,7 @@
 .DS_Store
 node_modules/
 dist/
+*-lock.yaml
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -13,6 +14,7 @@ selenium-debug.log
 # Editor directories and files
 .idea
 .vscode
+.history
 *.suo
 *.ntvs*
 *.njsproj
