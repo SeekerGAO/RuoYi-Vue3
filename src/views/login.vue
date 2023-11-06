@@ -31,13 +31,15 @@
           size="large"
           auto-complete="off"
           placeholder="验证码"
-          style="width: 63%"
+          style="flex: 1"
           @keyup.enter="handleLogin"
         >
           <template #prefix><svg-icon icon-class="validCode" class="el-input__icon input-icon" /></template>
         </el-input>
-        <div class="login-code">
+        <!-- <div class="login-code">
           <img :src="codeUrl" @click="getCode" class="login-code-img"/>
+        </div> -->
+        <div class="login-code" v-html="codeUrl" @click="getCode">
         </div>
       </el-form-item>
       <el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>
@@ -141,7 +143,8 @@ function getCode() {
   getCodeImg().then(res => {
     captchaEnabled.value = res.captchaEnabled === undefined ? true : res.captchaEnabled;
     if (captchaEnabled.value) {
-      codeUrl.value = "data:image/gif;base64," + res.img;
+      // codeUrl.value = "data:image/gif;base64," + res.img;
+      codeUrl.value = res.img;
       loginForm.value.uuid = res.uuid;
     }
   });
@@ -200,12 +203,16 @@ getCookie();
   color: #bfbfbf;
 }
 .login-code {
-  width: 33%;
   height: 40px;
   float: right;
   img {
     cursor: pointer;
     vertical-align: middle;
+  }
+  :deep(svg){
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
   }
 }
 .el-login-footer {
