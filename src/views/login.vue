@@ -36,9 +36,6 @@
         >
           <template #prefix><svg-icon icon-class="validCode" class="el-input__icon input-icon" /></template>
         </el-input>
-        <!-- <div class="login-code">
-          <img :src="codeUrl" @click="getCode" class="login-code-img"/>
-        </div> -->
         <div class="login-code" v-html="codeUrl" @click="getCode">
         </div>
       </el-form-item>
@@ -143,7 +140,6 @@ function getCode() {
   getCodeImg().then(res => {
     captchaEnabled.value = res.captchaEnabled === undefined ? true : res.captchaEnabled;
     if (captchaEnabled.value) {
-      // codeUrl.value = "data:image/gif;base64," + res.img;
       codeUrl.value = res.img;
       loginForm.value.uuid = res.uuid;
     }
